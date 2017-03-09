@@ -20,7 +20,7 @@ public class Favorites implements Serializable {
     private User user;
     
     @OneToMany(mappedBy="favorites")
-    private List<Content> contents;
+    private List<FC> fcs;
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,6 +42,14 @@ public class Favorites implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<FC> getFcs() {
+		return fcs;
+	}
+
+	public void setFcs(List<FC> fcs) {
+		this.fcs = fcs;
 	}
    
 }

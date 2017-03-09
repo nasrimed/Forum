@@ -24,6 +24,8 @@ public class Content implements Serializable {
 	private String description;
 	private String trailer;
 	private Date dateContent;
+	@OneToMany(mappedBy="content")
+	private List<FC> fcs;
 	
 	@ManyToOne 
 	private Category category;
@@ -37,8 +39,15 @@ public class Content implements Serializable {
 	@OneToMany(mappedBy="content")
 	private List<Award>awards;
 	
-	@ManyToOne
-	private Favorites favorites;
+	
+	
+	
+	public List<FC> getFcs() {
+		return fcs;
+	}
+	public void setFcs(List<FC> fcs) {
+		this.fcs = fcs;
+	}
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -110,11 +119,6 @@ public class Content implements Serializable {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Favorites getFavorites() {
-		return favorites;
-	}
-	public void setFavorites(Favorites favorites) {
-		this.favorites = favorites;
-	}
+	
    
 }
