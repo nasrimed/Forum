@@ -16,6 +16,15 @@ import javax.persistence.*;
 
 public class Content implements Serializable {
 
+	public Content(String title, String genre, String description, String trailer, Date dateContent) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+		this.dateContent = dateContent;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -118,6 +127,21 @@ public class Content implements Serializable {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	public Content(Integer id, String title, String genre, String description, String trailer) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+	}
+	public Content(String title, String genre, String description, String trailer) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
 	}
 	
    

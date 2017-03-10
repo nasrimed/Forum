@@ -10,6 +10,8 @@
 		<class>Entities.Comment</class>
 		<class>Entities.CommentId</class>
 		<class>Entities.Content</class>
+		<class>Entities.FC</class>
+		<class>Entities.FCId</class>
 		<class>Entities.Favorites</class>
 		<class>Entities.Message</class>
 		<class>Entities.MessageId</class>

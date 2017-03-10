@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Moderator extends User implements Serializable {
 
 	
-	private String responsibleOf;
+	private CatName responsibleOf;
 	
 	@OneToOne(mappedBy="moderator")
 	private Category category;
@@ -22,13 +22,15 @@ public class Moderator extends User implements Serializable {
 	public Moderator() {
 		super();
 	}   
-	public String getResponsibleOf() {
-		return this.responsibleOf;
+	
+	public CatName getResponsibleOf() {
+		return responsibleOf;
 	}
 
-	public void setResponsibleOf(String responsibleOf) {
+	public void setResponsibleOf(CatName responsibleOf) {
 		this.responsibleOf = responsibleOf;
 	}
+
 	public Category getCategory() {
 		return category;
 	}
