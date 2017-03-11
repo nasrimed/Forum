@@ -122,6 +122,14 @@ public class Content implements Serializable {
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
 	}
+	public Content(String title, String genre, String description, String trailer, Category category) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+		this.category = category;
+	}
 	public Category getCategory() {
 		return category;
 	}
@@ -142,6 +150,16 @@ public class Content implements Serializable {
 		this.genre = genre;
 		this.description = description;
 		this.trailer = trailer;
+	}
+	public Content(String title, String genre, String description, String trailer, Date dateContent,
+			Category category) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+		this.dateContent = dateContent;
+		this.category = category;
 	}
 	
    

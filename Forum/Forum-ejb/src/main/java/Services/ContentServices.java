@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import Entities.Category;
 import Entities.Content;
-
+import javax.persistence.Query;
 
 /**
  * Session Bean implementation class ContentServices
@@ -28,9 +30,9 @@ public class ContentServices implements ContentServicesRemote, ContentServicesLo
 	
 
 	@Override
-	public void addContent(String title, String genre, String description, String trailer,Date date) {
+	public void addContent(String title, String genre, String description, String trailer,Date date, Category category) {
 		// TODO Auto-generated method stub
-		Content content=new Content(title,genre,description,trailer,date);
+		Content content=new Content(title, genre, description, trailer, date, category);
 		entityManager.persist(content);
 	}
 
@@ -65,6 +67,39 @@ public class ContentServices implements ContentServicesRemote, ContentServicesLo
 	public List<Content> findAllContents() {
 		return entityManager.createQuery("select c from Content c ").getResultList();
 	}
+	
+	
+	@Override
+	public List<Content> findContentByCategory(Category category) {
+		return (List<Content>) entityManager.createQuery("select c from Content c where c.category=:cat").setParameter("cat", category);
+		//query.setParameter("cat", category);
+		//return query;
+		
+	 
+ 
+	}
+
+
+
+	@Override
+	public Category findCategoryById(int id) {
+		return entityManager.find(Category.class, id);
+		
+	}
+
+
+
+
+
+
+
+
+
+	//@Override
+	//public Category findCategoryById(int id) {
+		//return entityManager.find(Category.class, id);
+		
+	//}
 
 	
 

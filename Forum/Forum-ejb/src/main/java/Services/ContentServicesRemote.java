@@ -5,13 +5,14 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import Entities.Category;
 import Entities.Content;
 
 
 @Remote
 public interface ContentServicesRemote {
 	
-	void addContent(String title, String genre, String description,String trailer, Date date);
+	void addContent(String title, String genre, String description,String trailer, Date date, Category category);
 
 	
 
@@ -30,4 +31,17 @@ public interface ContentServicesRemote {
 
 
 	List<Content> findAllContents();
+
+
+
+	Category findCategoryById(int id);
+
+
+
+
+	List<Content> findContentByCategory(Category category);
+
+
+
+
 }

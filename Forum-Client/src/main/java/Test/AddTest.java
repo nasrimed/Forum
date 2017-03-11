@@ -3,33 +3,32 @@ package Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
-import Services.ContentServicesRemote;
+import Entities.Category;
+
+import businessDelegate.ContentServicesDelegate;
+
 
 
 public class AddTest {
 	
-	public static void main(String[] args) throws NamingException {
-		Context context = new InitialContext();
-		ContentServicesRemote contentServicesRemote = (ContentServicesRemote) context.lookup(
-				"Forum-ear/Forum-ejb/ContentServices!Services.ContentServicesRemote");
-
+	public static void main(String[] args)  {
 		
-		String title= "Titanic"; 
+		
+		String title= "The Ring"; 
 		String genre="Romance";
 		String trailer="www.youtube.com";
 		String description="Romance Movie On a Sinking boat";
+		
 		Date date = null;
+		Category category = ContentServicesDelegate.findCategoryById(4);
 		try {
 			date= new SimpleDateFormat("yyyy-MM-dd").parse("1998-07-04");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		contentServicesRemote.addContent(title,genre,description,trailer,date);
+		ContentServicesDelegate.addContent(title,genre,description,trailer,date,category);
 	}
 
 }

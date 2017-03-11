@@ -6,22 +6,20 @@ import javax.naming.NamingException;
 
 import Entities.Content;
 import Services.ContentServicesRemote;
+import businessDelegate.ContentServicesDelegate;
 
 
 public class UpdateContent {
 	
-	public static void main(String[] args) throws NamingException {
-		Context context = new InitialContext();
-		ContentServicesRemote contentServicesRemote = (ContentServicesRemote) context.lookup(
-				"Forum-ear/Forum-ejb/ContentServices!Services.ContentServicesRemote");
-
-		Content contentFound = contentServicesRemote.findContentById(2);
+	public static void main(String[] args)  {
+		
+		Content contentFound = ContentServicesDelegate.findContentById(2);
 		contentFound.setTitle("the ring");
 		
 		contentFound.setTrailer("www.youtube.com");
 		
 
-		contentServicesRemote.updateContent(contentFound);
+		ContentServicesDelegate.updateContent(contentFound);
 
 	}
 

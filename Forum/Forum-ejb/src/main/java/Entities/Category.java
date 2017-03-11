@@ -20,8 +20,9 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private CatName catName;
+	
 	private String description;
+	private TypeCategory typeCategory;
 	
 	@OneToMany(mappedBy="category")
 	private List<Content> contents;
@@ -49,12 +50,7 @@ public class Category implements Serializable {
 		super();
 	}   
 	
-	public CatName getCatName() {
-		return catName;
-	}
-	public void setCatName(CatName catName) {
-		this.catName = catName;
-	}
+	
 	public Moderator getModerator() {
 		return moderator;
 	}
@@ -74,6 +70,26 @@ public class Category implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public TypeCategory getTypeCategory() {
+		return typeCategory;
+	}
+	public void setTypeCategory(TypeCategory typeCategory) {
+		this.typeCategory = typeCategory;
+	}
+	public Category(String description, TypeCategory typeCategory) {
+		super();
+		this.description = description;
+		this.typeCategory = typeCategory;
+	}
+	public Category(Integer id, String description) {
+		super();
+		this.id = id;
+		this.description = description;
+	}
+	public Category(Integer id) {
+		super();
+		this.id = id;
 	}
    
 }
