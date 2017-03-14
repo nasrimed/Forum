@@ -1,10 +1,12 @@
 package businessDelegate;
 
-import java.util.Date;
+import java.util.ArrayList;
+
 import java.util.List;
 
 import Entities.Category;
 import Entities.Content;
+import Entities.Genre;
 import ServiceLocator.ServiceLocator;
 import Services.ContentServicesRemote;
 
@@ -16,9 +18,9 @@ public class ContentServicesDelegate {
 		return (ContentServicesRemote) ServiceLocator.getInstance().getRemoteProxy(jndiName);
 	}
 
-	public static void addContent(String title, String genre, String description, String trailer, Date date,
+	public static void addContent(String title, Genre genre, String description, String trailer, int yearReleased, Double rating,
 			Category category) {
-		getProxy().addContent(title, genre, description, trailer, date, category);
+		getProxy().addContent(title, genre, description, trailer, yearReleased, rating, category);
 	}
 	
 	public static void updateContent(Content content) {
@@ -28,6 +30,10 @@ public class ContentServicesDelegate {
 
 	public static Content findContentById(Integer id) {
 		return getProxy().findContentById(id);
+	}
+	
+	public static List<Content> findContentByTitle(String title) {
+		return getProxy().findContentByTitle(title);
 	}
 	
 	
@@ -56,5 +62,11 @@ public class ContentServicesDelegate {
 		
 		return getProxy().findContentByCategory(category);
 	}
-
-}
+	public static ArrayList<Content> listAlphabetically(ArrayList<Content> contents) {
+		return getProxy().listAlphabetically(contents);
+	}
+	
+	public static ArrayList<Content> listByGenre(ArrayList<Content> contents){
+		return getProxy().listByGenre(contents);
+	}
+	}

@@ -11,10 +11,12 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import Entities.Admin;
+
 import Entities.Category;
-import Entities.Moderator;
-import Entities.TypeCategory;
+import Entities.Content;
+import Entities.Genre;
+
+
 import Entities.User;
 
 
@@ -38,7 +40,7 @@ public class Utilities {
 
 	@PostConstruct
 	public void initDb() {
-		Admin admin=new Admin();
+		User admin=new User();
 		admin.setFirstName("admin");
 		admin.setLastName("admin");
 		admin.setUsername("admin");
@@ -55,7 +57,7 @@ public class Utilities {
 		admin.setRole("admin");
 		admin.setEnabled(true);
 		admin.setResponsibleOf("All");
-		Moderator moderator=new Moderator();
+		User moderator=new User();
 		moderator.setFirstName("moderator");
 		moderator.setLastName("moderator");
 		moderator.setUsername("moderator");
@@ -72,7 +74,7 @@ public class Utilities {
 		moderator.setRole("moderator");
 		moderator.setResponsibleOf("Movies");
 		moderator.setEnabled(true);
-		Moderator moderator1=new Moderator();
+		User moderator1=new User();
 		moderator1.setFirstName("moderator1");
 		moderator1.setLastName("moderator1");
 		moderator1.setUsername("moderator1");
@@ -89,7 +91,7 @@ public class Utilities {
 		moderator1.setRole("moderator");
 		moderator1.setResponsibleOf("Games");
 		moderator1.setEnabled(true);
-		Moderator moderator2=new Moderator();
+		User moderator2=new User();
 		moderator2.setFirstName("moderator2");
 		moderator2.setLastName("moderator2");
 		moderator2.setUsername("moderator2");
@@ -107,7 +109,7 @@ public class Utilities {
 		moderator2.setResponsibleOf("TV");
 		moderator2.setEnabled(true);
 
-		Moderator moderator3=new Moderator();
+		User moderator3=new User();
 		moderator3.setFirstName("moderator3");
 		moderator3.setLastName("moderator3");
 		moderator3.setUsername("moderator3");
@@ -168,28 +170,38 @@ public class Utilities {
 		entityManager.persist(user1);
 	////////////////////////////////////////////////////////////
 	
-		Category category1 =new Category();
-		category1.setDescription("ALL MOVIES");
-		category1.setTypeCategory(TypeCategory.MOVIES);
-		
-		Category category2 =new Category();
-		category2.setDescription("ALL TV");
-		category2.setTypeCategory(TypeCategory.TV);
-
-		
-		Category category3 =new Category();
-		category3.setDescription("ALL GAMES");
-		category3.setTypeCategory(TypeCategory.GAMES);
 		
 		
-		Category category4 =new Category();
-		category4.setDescription("ALL MUSIC");
-		category4.setTypeCategory(TypeCategory.MUSIC);
 		
 		
-		entityManager.persist(category1);
-		entityManager.persist(category2);
-		entityManager.persist(category3);
-		entityManager.persist(category4);
+		
+		
+////////////////////////////////////////////////////////////
+		
+		Content content1 =new Content();
+		content1.setTitle("Shutter Island");
+		content1.setDescription("mind blowing");
+		content1.setRating(8.1);
+		content1.setTrailer("www.IMDB.comSI");
+		content1.setGenre(Genre.THRILLER);
+		content1.setYearReleased(2007);
+		content1.setCategory(Category.MOVIES);
+		
+		Content content2 = new Content("The Ring",Genre.HORROR,"HORRIFIC","www.youtube",2004, 7.4,
+				Category.MOVIES);
+		
+		Content content3 = new Content("The Hangover",Genre.COMEDY,"FUNNY","YTS",2009, 8.0,
+				Category.MOVIES);
+		
+		Content content4 = new Content("Minions",Genre.ADVENTURE,"KIDS","Metacritics",2013, 9.0,
+				Category.MOVIES);
+		
+		entityManager.persist(content1);
+		entityManager.persist(content2);
+		entityManager.persist(content3);
+		entityManager.persist(content4);
+	
 	}
+	
+	
 }

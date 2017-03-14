@@ -2,6 +2,8 @@ package Entities;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -13,31 +15,29 @@ import javax.persistence.*;
 public class Moderator extends User implements Serializable {
 
 	
-	private String responsibleOf;
 	
-	@OneToOne(mappedBy="moderator")
-	private Category category;
+	
+	@OneToMany(mappedBy="moderator")
+	private List<Content> contents;
 	private static final long serialVersionUID = 1L;
 
 	public Moderator() {
 		super();
 	}
 
-	public String getResponsibleOf() {
-		return responsibleOf;
+	
+
+	public List<Content> getContent() {
+		return contents;
 	}
 
-	public void setResponsibleOf(String responsibleOf) {
-		this.responsibleOf = responsibleOf;
+	public void setContent(List<Content> contents) {
+		this.contents = contents;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
+	
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}   
+  
 	
 	
    

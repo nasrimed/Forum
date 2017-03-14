@@ -12,13 +12,14 @@ public class FindContentByCategory {
 	
 	public static void main(String[] args)  {
 		
-Category category=new Category(4);
-		Content contents = (Content) ContentServicesDelegate.findContentByCategory(category);
+		Category category=Category.MOVIES;
+		List<Content> contents = ContentServicesDelegate.findContentByCategory(category);
+		for (Content c : contents) {
+			System.out.println(c.getTitle());
+		}
 
 		
-			System.out.println(contents.getTitle());
 		
 
 	}
-
 }

@@ -29,6 +29,7 @@ public class Cast implements Serializable {
 	@OneToMany(mappedBy="cast")
 	private List<Award> awards;
 	
+
 	public Admin getAdmin() {
 		return admin;
 	}

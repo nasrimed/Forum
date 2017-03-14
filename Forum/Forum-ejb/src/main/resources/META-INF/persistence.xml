@@ -6,7 +6,6 @@
 		<class>Entities.Award</class>
 		<class>Entities.AwardId</class>
 		<class>Entities.Cast</class>
-		<class>Entities.Category</class>
 		<class>Entities.Comment</class>
 		<class>Entities.CommentId</class>
 		<class>Entities.Content</class>
@@ -19,6 +18,13 @@
 		<class>Entities.Rating</class>
 		<class>Entities.RatingId</class>
 		<class>Entities.User</class>
+	
+		
+	
+		
+		
+		
+		
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 		</properties>

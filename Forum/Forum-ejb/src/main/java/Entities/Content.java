@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.*;
@@ -16,28 +17,22 @@ import javax.persistence.*;
 
 public class Content implements Serializable {
 
-	public Content(String title, String genre, String description, String trailer, Date dateContent) {
-		super();
-		this.title = title;
-		this.genre = genre;
-		this.description = description;
-		this.trailer = trailer;
-		this.dateContent = dateContent;
-	}
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
-	private String genre;
+	private Genre genre;
 	private String description;
 	private String trailer;
-	private Date dateContent;
+	private int yearReleased;
+	private Double rating;
+	private Category category;
 	@OneToMany(mappedBy="content")
 	private List<FC> fcs;
 	
-	@ManyToOne 
-	private Category category;
+	
 	
 	@OneToMany(mappedBy="content")
 	private List<Rating> ratings;
@@ -47,10 +42,24 @@ public class Content implements Serializable {
 	
 	@OneToMany(mappedBy="content")
 	private List<Award>awards;
+	@ManyToOne
+	private Admin admin;
 	
+	@OneToOne
+	private Moderator moderator;
 	
-	
-	
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	public Moderator getModerator() {
+		return moderator;
+	}
+	public void setModerator(Moderator moderator) {
+		this.moderator = moderator;
+	}
 	public List<FC> getFcs() {
 		return fcs;
 	}
@@ -81,12 +90,7 @@ public class Content implements Serializable {
 	public Content() {
 		super();
 	}   
-	public Date getDateContent() {
-		return dateContent;
-	}
-	public void setDateContent(Date dateContent) {
-		this.dateContent = dateContent;
-	}
+	
 	public Integer getId() {
 		return this.id;
 	}
@@ -101,11 +105,13 @@ public class Content implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}   
-	public String getGenre() {
-		return this.genre;
+	
+	public Genre getGenre() {
+        return genre;
+    
 	}
 
-	public void setGenre(String genre) {
+	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}   
 	public String getDescription() {
@@ -122,7 +128,7 @@ public class Content implements Serializable {
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
 	}
-	public Content(String title, String genre, String description, String trailer, Category category) {
+	public Content(String title, Genre genre, String description, String trailer, Category category) {
 		super();
 		this.title = title;
 		this.genre = genre;
@@ -136,7 +142,7 @@ public class Content implements Serializable {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Content(Integer id, String title, String genre, String description, String trailer) {
+	public Content(Integer id, String title, Genre genre, String description, String trailer) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -144,23 +150,58 @@ public class Content implements Serializable {
 		this.description = description;
 		this.trailer = trailer;
 	}
-	public Content(String title, String genre, String description, String trailer) {
+	public Content(String title, Genre genre, String description, String trailer) {
 		super();
 		this.title = title;
 		this.genre = genre;
 		this.description = description;
 		this.trailer = trailer;
 	}
-	public Content(String title, String genre, String description, String trailer, Date dateContent,
+	public Content(String title, Genre genre, String description, String trailer, int yearReleased,
 			Category category) {
 		super();
 		this.title = title;
 		this.genre = genre;
 		this.description = description;
 		this.trailer = trailer;
-		this.dateContent = dateContent;
+		this.yearReleased = yearReleased;
 		this.category = category;
 	}
 	
-   
+	public Content(String title, Genre genre, String description, String trailer, int yearRleased) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+		this.yearReleased = yearReleased;
+	}
+	public int getYearReleased() {
+		return yearReleased;
+	}
+	public void setYearReleased(int yearReleased) {
+		this.yearReleased = yearReleased;
+	}
+	public Double getRating() {
+		return rating;
+	}
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+	public Content(String title, Genre genre, String description, String trailer, int yearReleased, Double rating,
+			Category category) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.description = description;
+		this.trailer = trailer;
+		this.yearReleased = yearReleased;
+		this.rating = rating;
+		this.category = category;
+	}
+	
+	
+	
+	
+	
 }

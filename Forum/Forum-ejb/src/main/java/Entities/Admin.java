@@ -24,7 +24,7 @@ public class Admin extends Moderator implements Serializable {
 	private List<Cast> casts;
 
 	@OneToMany(mappedBy="admin")
-	private List<Category> categories;
+	private List<Content> contents;
 	
 	public List<Cast> getCasts() {
 		return casts;
@@ -34,12 +34,5 @@ public class Admin extends Moderator implements Serializable {
 		this.casts = casts;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
    
 }
